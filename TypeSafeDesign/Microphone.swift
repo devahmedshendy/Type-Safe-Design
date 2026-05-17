@@ -1,4 +1,6 @@
-enum MicrophoneCapabilities {
+enum MicrophoneCapabilities: String, Identifiable {
+    var id: String { rawValue }
+    
     case mute
     case volumeChange
 }
@@ -15,16 +17,43 @@ struct Microphone {
     let maxVolume: Double
 }
 
-protocol MicrophoneCapability {}
+//struct Microphone: Identifiable {
+//    let id: Int
+//    let isMuted: Bool
+//    let volume: Double
+//    let minVolume: Double
+//    let maxVolume: Double
+//
+//    let capabilities: [any DeviceCapability]
+//}
 
-struct MuteCapability: MicrophoneCapability {
-    let call: () -> MicrophoneCapability
-}
+//extension Microphone {
+//    init(from dto: MicrophoneDTO) {
+//        self.id = dto.id
+//        self.isMuted = dto.isMuted
+//        self.volume = dto.volume
+//        self.minVolume = dto.minVolume
+//        self.maxVolume = dto.maxVolume
+//
+//        self.capabilities = dto.capabilities.map {
+//            return switch $0 {
+//            case .mute: MuteCapability()
+//            case .volumeChange: VolumeChangeCapability()
+//            }
+//        }
+//    }
+//}
 
-struct UnmuteCapability: MicrophoneCapability {
-    let call: () -> MicrophoneCapability
-}
-
-struct VolumeUpCapability: MicrophoneCapability {
-    let call: (step: Int) -> Void
-}
+//protocol MicrophoneCapability {}
+//
+//struct MuteCapability: MicrophoneCapability {
+//    let call: () -> MicrophoneCapability
+//}
+//
+//struct UnmuteCapability: MicrophoneCapability {
+//    let call: () -> MicrophoneCapability
+//}
+//
+//struct VolumeUpCapability: MicrophoneCapability {
+//    let call: (step: Int) -> Void
+//}

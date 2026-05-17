@@ -1,8 +1,9 @@
 import SwiftUI
+import Combine
 
 struct MicrophoneListView: View {
     @State private var viewModel: MicrophoneViewModel
-    
+
     init(viewModel: MicrophoneViewModel) {
         self.viewModel = viewModel
     }
@@ -18,7 +19,10 @@ struct MicrophoneListView: View {
                     )
                 } else {
                     List(viewModel.microphones, id: \.id) { microphone in
-                        MicrophoneRowView(microphone: microphone, viewModel: viewModel)
+                        MicrophoneRowView(
+                            microphone: microphone,
+                            service: viewModel.service
+                        )
                     }
                 }
             }
@@ -29,3 +33,5 @@ struct MicrophoneListView: View {
         }
     }
 }
+
+
